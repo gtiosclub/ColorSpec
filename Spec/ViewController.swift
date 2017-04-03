@@ -51,5 +51,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         dest.colorName = colorNames[index]
     }
 
+    @IBAction func addNewColor(_ sender: Any) {
+        ColorPickerViewController.present(over: self, completion: { newColorInfo in
+            if let newColor = newColorInfo?.color, let newName = newColorInfo?.name {
+                self.colorNames.append(newName)
+                self.colors.append(newColor)
+                self.tableView.reloadData()
+            }
+        })
+    }
 }
 
